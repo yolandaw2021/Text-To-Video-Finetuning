@@ -2,7 +2,7 @@
 pretrained_model_path: "./models/model_scope_diffusers/" #https://huggingface.co/damo-vilab/text-to-video-ms-1.7b/tree/main
 
 # The folder where your training outputs will be placed.
-output_dir: "./videos"
+output_dir: "./outputs"
 
 # You can train multiple datasets at once. They will be joined together for training.
 # Simply remove the line you don't need, or keep them all for mixed training.
@@ -58,7 +58,7 @@ text_encoder_lora_modules:
 
 # The rank for LoRA training. With ModelScope, the maximum should be 1024. 
 # VRAM increases with higher rank, lower when decreased.
-lora_rank: 16
+lora_rank: 64
 
 # Training data parameters
 train_data:
@@ -93,7 +93,7 @@ train_data:
   fallback_prompt: ''
   
   # 'folder'
-  path: "path/to/folder/of/videos/"
+  path: "/home/yw583/workspace/make-it-move/data/"
 
   # 'json'
   json_path: 'path/to/train/json/'
@@ -121,7 +121,7 @@ validation_data:
   height: 384
 
   # Number of inference steps when generating the video.
-  num_inference_steps: 25
+  num_inference_steps: 50
 
   # CFG scale
   guidance_scale: 9
@@ -130,7 +130,7 @@ validation_data:
 learning_rate: 5e-6
 
 # Weight decay. Higher = more regularization. Lower = closer to dataset.
-adam_weight_decay: 1e-2
+adam_weight_decay: 1e-3
 
 # Optimizer parameters for the UNET. Overrides base learning rate parameters.
 extra_unet_params: null
@@ -143,7 +143,7 @@ extra_text_encoder_params: null
   #adam_weight_decay: 0.2
 
 # How many batches to train. Not to be confused with video frames.
-train_batch_size: 1
+train_batch_size: 8
 
 # Maximum number of train steps. Model is saved after training.
 max_train_steps: 10000
@@ -152,7 +152,7 @@ max_train_steps: 10000
 checkpointing_steps: 2500
 
 # How many steps to do for validation if sample_preview is enabled.
-validation_steps: 100
+validation_steps: 1000
 
 # Which modules we want to unfreeze for the UNET. Advanced usage.
 trainable_modules:

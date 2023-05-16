@@ -82,7 +82,7 @@ def get_train_dataset(dataset_types, train_data, tokenizer):
     for DataSet in [VideoJsonDataset, SingleVideoDataset, ImageDataset, VideoFolderDataset]:
         for dataset in dataset_types:
             if dataset == DataSet.__getname__():
-                train_datasets.append(DataSet(**train_data, tokenizer=tokenizer))
+                train_datasets.append(DataSet(**train_data, tokenizer=tokenizer, path="/scratch/MiM/data/"))
 
     if len(train_datasets) > 0:
         return train_datasets
@@ -992,7 +992,7 @@ def main(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", type=str, default="./configs/my_config.yaml")
+    parser.add_argument("--config", type=str, default="./configs/v2/mim_config.yaml")
     args = parser.parse_args()
 
     main(**OmegaConf.load(args.config))

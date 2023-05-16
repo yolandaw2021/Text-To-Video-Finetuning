@@ -1,5 +1,4 @@
 accelerate
-torch
 torchvision
 torchaudio
 git+https://github.com/huggingface/diffusers.git
